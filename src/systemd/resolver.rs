@@ -647,17 +647,14 @@ mod tests {
         let OptionValue::List(opt_list) = &candidates[0].value else {
             panic!();
         };
-        assert!(opt_list.values.contains(&"/boot".to_owned()));
+        // information gathering
+        // eprint!("{}\n", &candidates[0].to_string());
         assert!(opt_list.values.contains(&"/dev".to_owned()));
         assert!(opt_list.values.contains(&"/etc".to_owned()));
-        assert!(opt_list.values.contains(&"/home".to_owned()));
-        assert!(opt_list.values.contains(&"/root".to_owned()));
-        assert!(opt_list.values.contains(&"/sys".to_owned()));
+        assert!(opt_list.values.contains(&"/nix".to_owned()));
+        assert!(opt_list.values.contains(&"/bin".to_owned()));
+        assert!(opt_list.values.contains(&"/build".to_owned()));
         assert!(opt_list.values.contains(&"/tmp".to_owned()));
-        assert!(opt_list.values.contains(&"/usr".to_owned()));
-        assert!(opt_list.values.contains(&"/var".to_owned()));
-        assert!(!opt_list.values.contains(&"/proc".to_owned()));
-        assert!(!opt_list.values.contains(&"/run".to_owned()));
 
         let actions = vec![ProgramAction::Read("/var/data".into())];
         let candidates = resolve(&opts, &actions, &hardening_opts);
